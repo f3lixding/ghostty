@@ -62,6 +62,18 @@ pub fn build(b: *std.Build) !void {
     // Ghostty executable, the actual runnable Ghostty program.
     const exe = try buildpkg.GhosttyExe.init(b, &config, &deps);
 
+    const check_compile = b.step("check", "Check if ghostty compiles");
+    const exe_check = b.addExecutable(.{
+        .name = "ghostty_check",
+        .root_module = b.createModule(.{
+            .root_source_file = b.path("src/main.zig"),
+            .target = config.target,
+            .optimize = config.optimize,
+        }),
+    });
+    _ = try deps.add(exe_check);
+    check_compile.dependOn(&exe_check.step);
+
     // Ghostty docs
     const docs = try buildpkg.GhosttyDocs.init(b, &deps);
     if (config.emit_docs) {

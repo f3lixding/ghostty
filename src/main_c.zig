@@ -103,7 +103,13 @@ pub const String = extern struct {
 
 /// Initialize ghostty global state.
 pub export fn ghostty_init(argc: usize, argv: [*][*:0]u8) c_int {
+    const waitForDebugger = @import("felix_debug.zig").waitForDebugger;
+
     assert(builtin.link_libc);
+
+    waitForDebugger() catch {
+        @panic("Wait for debugger failed");
+    };
 
     std.os.argv = argv[0..argc];
     state.init() catch |err| {
