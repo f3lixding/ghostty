@@ -32,3 +32,14 @@ A file for [guiding coding agents](https://agents.md/).
 - Use `zig build` to build the macOS app and any shared Zig code
 - Use `zig build run` to build and run the macOS app
 - Run Xcode tests using `zig build test`
+
+# Explanation Guide
+This is for when you are asked a question about the codebase
+
+Format your answer assuming the user does not have any prior knowledge
+associated with the domain and include necessary information for your answer to
+make sense
+
+If you are providing examples, DO NOT use pseudocode and reference actual code
+snippet in the codebase. Make sure to include where this snippet is from with
+the format of [filename, line number]

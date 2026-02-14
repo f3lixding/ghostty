@@ -1,4 +1,6 @@
 const std = @import("std");
+/// NOTE THAT THIS IS ONLY TRUE FOR MACOS
+/// FOR
 const assert = @import("../../../quirks.zig").inlineAssert;
 const Allocator = std.mem.Allocator;
 const adw = @import("adw");
